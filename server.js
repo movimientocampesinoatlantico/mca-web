@@ -6,6 +6,9 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+console.log('SUPABASE_URL:', process.env.SUPABASE_URL);
+console.log('SUPABASE_KEY existe:', !!process.env.SUPABASE_KEY);
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
