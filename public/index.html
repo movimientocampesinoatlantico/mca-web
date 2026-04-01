@@ -130,14 +130,16 @@ footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text
 .wa-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
 @media(max-width:768px){.hero-content,.id-grid{grid-template-columns:1fr}.datos-grid,.acciones-grid,.ped-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hero-logo-wrap{display:none}}
 @media(max-width:480px){.datos-grid,.ped-grid{grid-template-columns:1fr}}
-.orgs-section{background:var(--vd);padding:5rem 2rem}
-.orgs-section .section-tag{color:var(--oc)}
-.orgs-section .section-title{color:var(--cr)}
-.orgs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.5rem}
-.org-item{background:rgba(245,240,224,.07);border:1px solid rgba(200,137,26,.2);border-radius:10px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:background .25s,border-color .25s,transform .2s}
-.org-item:hover{background:rgba(245,240,224,.14);border-color:var(--oc);transform:translateY(-4px)}
-.org-item img{width:90px;height:90px;object-fit:contain;border-radius:50%;background:var(--cr);padding:6px}
-.org-item-name{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.06em;color:rgba(245,240,224,.8);text-align:center;line-height:1.4;text-transform:uppercase}
+.orgs-section{background:var(--vd);padding:3.5rem 0;overflow:hidden}
+.orgs-header{text-align:center;padding:0 2rem 2.5rem}
+.banner-track-wrap{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
+.banner-track{display:flex;gap:20px;animation:scroll-b 60s linear infinite;width:max-content}
+.banner-track:hover{animation-play-state:paused}
+@keyframes scroll-b{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.org-card{width:150px;height:150px;flex-shrink:0;background:rgba(245,240,224,.07);border:1px solid rgba(200,137,26,.22);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;gap:8px;transition:background .3s,border-color .3s}
+.org-card:hover{background:rgba(245,240,224,.15);border-color:var(--oc)}
+.org-card img{width:90px;height:90px;object-fit:contain;border-radius:50%;background:var(--cr);padding:5px}
+.org-card-name{font-family:'Oswald',sans-serif;font-size:.6rem;letter-spacing:.05em;color:rgba(245,240,224,.7);text-align:center;line-height:1.3;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -197,11 +199,13 @@ footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text
 </section>
 
 <section class="orgs-section" id="organizaciones">
-  <div class="container">
-    <span class="section-tag">Solidaridad organizada</span>
-    <h2 class="section-title">Organizaciones que respaldaron el Pliego</h2>
-    <p style="color:rgba(245,240,224,.65);max-width:620px;font-size:.95rem;line-height:1.7;margin-bottom:3rem">Estas son las organizaciones que ya están en este proceso.<br><strong style="color:var(--oc)">Y seguimos creciendo.</strong></p>
-    <div class="orgs-grid" id="orgsGrid"></div>
+  <div class="orgs-header container">
+    <span class="section-tag" style="color:var(--oc)">Solidaridad organizada</span>
+    <h2 class="section-title light">Organizaciones que respaldaron el Pliego</h2>
+    <p style="color:rgba(245,240,224,.65);max-width:580px;margin:0 auto;font-size:.9rem;line-height:1.7">Estas son las organizaciones que ya están en este proceso.<br><strong style="color:var(--oc)">Y seguimos creciendo.</strong></p>
+  </div>
+  <div class="banner-track-wrap">
+    <div class="banner-track" id="bannerTrack"></div>
   </div>
 </section>
 
@@ -457,13 +461,14 @@ const organizaciones = ["ACOVID","ACUCAMBUL","ACUG","AGRO FUTURA","AGROCARIBESC"
 
 function nombreLimpio(n){return n.replace(/\d+$/,'').replace(/[._]/g,' ').trim()}
 
-const grid=document.getElementById('orgsGrid');
-if(grid){
-  grid.innerHTML=organizaciones.map(org=>{
+const track=document.getElementById('bannerTrack');
+if(track){
+  const cards=organizaciones.map(org=>{
     const archivo=encodeURIComponent(org+'.png');
     const nombre=nombreLimpio(org);
-    return `<div class="org-item"><img src="logos/${archivo}" alt="${nombre}" onerror="this.style.display='none'"><div class="org-item-name">${nombre}</div></div>`;
+    return `<div class="org-card"><img src="logos/${archivo}" alt="${nombre}" onerror="this.style.display='none'"><div class="org-card-name">${nombre}</div></div>`;
   }).join('');
+  track.innerHTML=cards+cards;
 }
 document.getElementById('registroForm').addEventListener('submit',async function(e){
   e.preventDefault();
