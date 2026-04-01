@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movimiento Campesino del Atlántico</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@300;400;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--vd:#3d4a1f;--vc:#5a7a2a;--oc:#c8891a;--ti:#b85c1a;--cr:#f5f0e0;--cd:#e8e0c8;--ma:#2a1f0a;--bl:#ffffff}
+html{scroll-behavior:smooth}
+body{font-family:'Source Serif 4',serif;background:var(--cr);color:var(--ma);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(61,74,31,0.97);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:76px;border-bottom:2px solid var(--oc)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{width:64px;height:64px;border-radius:50%;object-fit:contain;background:#f5f0e0;padding:4px;flex-shrink:0}
+.nav-logo span{font-family:'Oswald',sans-serif;font-size:.88rem;color:var(--cr);letter-spacing:.04em;line-height:1.2}
+.nav-links{display:flex;gap:1.2rem}
+.nav-links a{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.08em;color:var(--cr);text-decoration:none;text-transform:uppercase;padding:.3rem 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+.nav-links a:hover{border-bottom-color:var(--oc);color:var(--oc)}
+.hero{min-height:100vh;padding-top:76px;background:var(--vd);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(200,137,26,.04) 40px,rgba(200,137,26,.04) 41px)}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;max-width:1200px;margin:0 auto;padding:4rem 2rem;width:100%}
+.hero-eyebrow{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.2em;color:var(--oc);text-transform:uppercase;margin-bottom:.8rem}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.8rem);font-weight:900;color:var(--cr);line-height:1.08;margin-bottom:.6rem}
+.hero-lema{font-family:'Oswald',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);font-weight:700;color:var(--oc);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.5rem;border-left:4px solid var(--oc);padding-left:1rem;line-height:1.3}
+.hero-sub{font-size:.95rem;color:rgba(245,240,224,.75);line-height:1.75;margin-bottom:.8rem;max-width:480px}
+.hero-prueba{font-size:.88rem;color:var(--cr);margin-bottom:1.8rem;opacity:.9}
+.hero-prueba span{color:var(--oc);font-weight:600}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-p{background:var(--oc);color:var(--ma);font-family:'Oswald',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.8rem;border:none;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s}
+.btn-p:hover{background:#dfa030;transform:translateY(-2px)}
+.btn-s{background:transparent;color:var(--cr);font-family:'Oswald',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.8rem;border:2px solid rgba(245,240,224,.35);border-radius:3px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s,transform .15s}
+.btn-s:hover{border-color:var(--cr);transform:translateY(-2px)}
+.hero-logo-wrap{display:flex;align-items:center;justify-content:center}
+.hero-logo-ring{width:min(340px,80vw);height:min(340px,80vw);border-radius:50%;border:3px solid rgba(200,137,26,.3);display:flex;align-items:center;justify-content:center;position:relative;animation:logoFloat 6s ease-in-out infinite}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-logo-ring::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(200,137,26,.15)}
+.hero-logo-ring img{width:88%;height:88%;object-fit:contain;border-radius:50%;background:#f5f0e0;padding:16px}
+.hero-stats{display:flex;gap:1.5rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(245,240,224,.12);flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--oc);display:block}
+.stat-label{font-size:.68rem;color:rgba(245,240,224,.55);letter-spacing:.08em;text-transform:uppercase}
+section{padding:4.5rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+.section-tag{font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oc);margin-bottom:.6rem;display:block}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--vd);margin-bottom:1.25rem;line-height:1.15}
+.section-title.light{color:var(--cr)}
+.cta-strip{background:var(--vd);padding:3rem 2rem;text-align:center}
+.cta-strip h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cr);margin-bottom:.6rem}
+.cta-strip p{color:rgba(245,240,224,.65);font-size:.92rem;margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6}
+.datos-section{background:var(--cd)}
+.datos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2rem}
+.dato-card{background:var(--bl);border-radius:8px;padding:1.5rem;text-align:center;border-bottom:3px solid var(--oc)}
+.dato-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--vd);display:block;line-height:1}
+.dato-label{font-size:.78rem;color:#6a5a3a;margin-top:.4rem;line-height:1.4}
+.banner-section{background:var(--vd);padding:3.5rem 0;overflow:hidden}
+.banner-header{text-align:center;padding:0 2rem 2.5rem}
+.banner-track-wrap{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
+.banner-track{display:flex;gap:20px;animation:scroll-b 45s linear infinite;width:max-content}
+.banner-track:hover{animation-play-state:paused}
+@keyframes scroll-b{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.org-card{width:130px;height:130px;flex-shrink:0;background:rgba(245,240,224,.07);border:1px solid rgba(200,137,26,.22);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;gap:6px;transition:background .3s,border-color .3s}
+.org-card:hover{background:rgba(245,240,224,.15);border-color:var(--oc)}
+.org-ini{width:66px;height:66px;border-radius:50%;background:rgba(245,240,224,.1);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:600;color:var(--cr);text-align:center;padding:5px;line-height:1.2;border:1.5px solid rgba(200,137,26,.28)}
+.org-name{font-family:'Oswald',sans-serif;font-size:.55rem;color:rgba(245,240,224,.65);text-align:center;line-height:1.3;text-transform:uppercase}
+.identidad-section{background:var(--cr)}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;margin-top:2.5rem}
+.id-text p{font-size:1.05rem;line-height:1.85;color:#3a3020;margin-bottom:1rem}
+.id-text blockquote{border-left:4px solid var(--oc);padding-left:1.25rem;margin:1.75rem 0;font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:var(--vd);line-height:1.5}
+.pilares{display:flex;flex-direction:column;gap:.9rem}
+.pilar{background:var(--bl);border:1px solid var(--cd);border-left:4px solid var(--vc);border-radius:0 8px 8px 0;padding:1.1rem 1.3rem;transition:border-left-color .2s,transform .2s}
+.pilar:hover{border-left-color:var(--oc);transform:translateX(4px)}
+.pilar h4{font-family:'Oswald',sans-serif;font-size:.88rem;letter-spacing:.05em;color:var(--vd);margin-bottom:.35rem;text-transform:uppercase}
+.pilar p{font-size:.88rem;line-height:1.55;color:#5a4a2a}
+.acciones-section{background:var(--cr);padding:4rem 2rem}
+.acciones-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:2rem}
+.pedagogica-section{background:var(--cd);padding:4rem 2rem}
+.ped-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.pliego-section{background:var(--vd);color:var(--cr)}
+.pliego-human{color:rgba(245,240,224,.75);max-width:700px;font-size:.95rem;line-height:1.9;margin-bottom:1.5rem}
+.pliego-human span{color:var(--oc)}
+.pliego-intro-box{background:rgba(200,137,26,.12);border:1px solid rgba(200,137,26,.3);border-radius:8px;padding:1.5rem 2rem;margin:1.5rem 0 2rem;max-width:800px}
+.pliego-intro-box p{font-size:.92rem;line-height:1.7;color:rgba(245,240,224,.85)}
+.pliego-intro-box strong{color:var(--oc)}
+.pliego-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem;background:rgba(245,240,224,.08);border:1px solid rgba(200,137,26,.2);border-radius:3px;color:rgba(245,240,224,.6);cursor:pointer;transition:all .2s}
+.tab-btn.active,.tab-btn:hover{background:var(--oc);color:var(--ma);border-color:var(--oc)}
+.pliego-content{display:none}
+.pliego-content.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.p-header{margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1rem}
+.p-icon{font-size:2rem;flex-shrink:0;margin-top:.4rem}
+.p-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--oc);opacity:.3;line-height:1;display:block}
+.p-header h3{font-family:'Oswald',sans-serif;font-size:1.15rem;letter-spacing:.06em;color:var(--cr);text-transform:uppercase;margin-bottom:.25rem}
+.p-resumen{font-size:.88rem;color:var(--oc);margin-bottom:.25rem;font-style:italic}
+.p-ents{font-size:.72rem;color:rgba(245,240,224,.45)}
+.p-items{display:flex;flex-direction:column;gap:.8rem}
+.pi{background:rgba(245,240,224,.06);border:1px solid rgba(200,137,26,.15);border-radius:6px;padding:1rem 1.25rem}
+.pi h4{font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.04em;color:var(--oc);margin-bottom:.4rem;text-transform:uppercase}
+.pi p{font-size:.83rem;color:rgba(245,240,224,.7);line-height:1.6}
+.form-section{background:var(--cr)}
+.form-wrap{background:var(--bl);border-radius:12px;box-shadow:0 2px 40px rgba(61,74,31,.1);padding:2.5rem;max-width:860px;margin:2.5rem auto 0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg.full{grid-column:1/-1}
+.fg label{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--vd);font-weight:600}
+.fg input,.fg select,.fg textarea{border:1.5px solid #ddd5bc;border-radius:6px;padding:.7rem .9rem;font-family:'Source Serif 4',serif;font-size:.9rem;color:var(--ma);background:var(--bl);transition:border-color .2s,box-shadow .2s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--vc);box-shadow:0 0 0 3px rgba(90,122,42,.12)}
+.fg textarea{resize:vertical;min-height:90px}
+.form-submit{text-align:center;margin-top:1.75rem}
+.form-submit button{background:var(--vd);color:var(--cr);font-family:'Oswald',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2.5rem;border:none;border-radius:4px;cursor:pointer;transition:background .2s,transform .15s}
+.form-submit button:hover{background:var(--vc);transform:translateY(-2px)}
+.form-submit button:disabled{background:#aaa;cursor:not-allowed;transform:none}
+.form-note{font-size:.73rem;color:#8a7a5a;margin-top:.8rem;font-style:italic}
+.form-msg{display:none;text-align:center;padding:2rem;border-radius:8px;margin-top:1rem}
+.form-msg.ok{background:rgba(90,122,42,.08);border:2px solid var(--vc)}
+.form-msg.ok h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--vd);margin-bottom:.5rem}
+.form-msg.ok p{color:#5a4a2a;font-size:.9rem}
+.form-msg.err{background:rgba(184,92,26,.08);border:2px solid var(--ti)}
+.form-msg.err p{color:#8a3010;font-size:.9rem}
+.contacto-strip{background:var(--ma);text-align:center;padding:1.75rem 2rem;color:rgba(245,240,224,.6);font-size:.85rem}
+.contacto-strip a{color:var(--oc);text-decoration:none}
+.contacto-strip strong{color:var(--cr)}
+footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--cr);margin-bottom:.4rem}
+.footer-sub{font-size:.8rem;margin-bottom:.4rem}
+.footer-colectivo{font-size:.8rem;color:var(--oc);margin-bottom:1.2rem}
+.footer-copy{font-size:.72rem;letter-spacing:.04em}
+.wa-btn{position:fixed;bottom:24px;right:24px;background:#25D366;color:white;padding:14px 20px;border-radius:50px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:999;font-size:.9rem;display:flex;align-items:center;gap:8px;font-family:'Oswald',sans-serif;letter-spacing:.05em;transition:transform .2s,box-shadow .2s}
+.wa-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+@media(max-width:768px){.hero-content,.id-grid{grid-template-columns:1fr}.datos-grid,.acciones-grid,.ped-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hero-logo-wrap{display:none}}
+@media(max-width:480px){.datos-grid,.ped-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="logo_MCA-removebg-preview.png" alt="Logo MCA">
+    <span>Movimiento Campesino<br>del Atlántico</span>
+  </div>
+  <div class="nav-links">
+    <a href="#identidad">Quiénes somos</a>
+    <a href="#organizaciones">Aliados</a>
+    <a href="#pliego">Pliego</a>
+    <a href="#registro">Únete</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div>
+      <span class="hero-eyebrow">Atlántico · Colombia · 2026</span>
+      <h1 class="hero-title">Aquí estamos los campesinos del Atlántico.</h1>
+      <div class="hero-lema">¡Reforma Agraria en el Atlántico YA!</div>
+      <p class="hero-sub">Organizados en los 23 municipios, unidos por la tierra, la producción y la dignidad del campo.</p>
+      <p class="hero-prueba">✔ <span>Más de 150 asociaciones</span> ya hacen parte de este proceso</p>
+      <div class="hero-ctas">
+        <a href="#registro" class="btn-p">Registrar Asociación</a>
+        <a href="#pliego" class="btn-s">Ver el Pliego</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Asociaciones</span></div>
+        <div class="stat"><span class="stat-num">23</span><span class="stat-label">Municipios</span></div>
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Subsistemas</span></div>
+        <div class="stat"><span class="stat-num">287K</span><span class="stat-label">Víctimas RUV</span></div>
+      </div>
+    </div>
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-ring">
+        <img src="logo_MCA-removebg-preview.png" alt="MCA">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="datos-section">
+  <div class="container">
+    <span class="section-tag">Esto no es discurso. Es lo que vivimos en el Atlántico:</span>
+    <h2 class="section-title">La realidad del campo en el Atlántico</h2>
+    <div class="datos-grid">
+      <div class="dato-card"><span class="dato-num">80%</span><div class="dato-label">Dependencia alimentaria del exterior</div></div>
+      <div class="dato-card"><span class="dato-num">0.86</span><div class="dato-label">Índice Gini de concentración de tierras</div></div>
+      <div class="dato-card"><span class="dato-num">85%</span><div class="dato-label">Del pescado consumido es importado</div></div>
+      <div class="dato-card"><span class="dato-num">339K ha</span><div class="dato-label">Territorio — 72% bosque seco tropical</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="banner-section" id="organizaciones">
+  <div class="banner-header container">
+    <span class="section-tag" style="color:var(--oc)">Solidaridad organizada</span>
+    <h2 class="section-title light">Organizaciones que respaldaron el Pliego</h2>
+    <p style="color:rgba(245,240,224,.65);max-width:580px;margin:0 auto;font-size:.9rem;line-height:1.7">
+      Estas son las organizaciones que ya están en este proceso.<br>
+      <strong style="color:var(--oc)">Y seguimos creciendo.</strong>
+    </p>
+  </div>
+  <div class="banner-track-wrap">
+    <div class="banner-track" id="bannerTrack"></div>
+  </div>
+</section>
+
+<section class="identidad-section" id="identidad">
+  <div class="container">
+    <span class="section-tag">Nuestra identidad</span>
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <div class="id-grid">
+      <div class="id-text">
+        <p>Somos campesinos y campesinas del Atlántico.</p>
+        <p>Somos quienes producimos la comida, cuidamos el territorio y sostenemos la vida en el campo.</p>
+        <p>Hoy estamos organizados en los 23 municipios, a través de asociaciones, comités y procesos comunitarios.</p>
+        <p>Aquí hay mujeres rurales, jóvenes, pescadores, víctimas del conflicto y comunidades étnicas.</p>
+        <blockquote>"No somos pocos. Somos miles. Y estamos unidos para que el Atlántico entre de verdad en la Reforma Agraria."</blockquote>
+      </div>
+      <div class="pilares">
+        <div class="pilar"><h4>🌱 Soberanía alimentaria</h4><p>Queremos producir nuestra propia comida.</p></div>
+        <div class="pilar"><h4>🌍 Reforma agraria integral</h4><p>Acceso real a tierra para el campesino.</p></div>
+        <div class="pilar"><h4>🐟 Economía azul campesina</h4><p>Mejores condiciones para la pesca y el trabajo en el agua.</p></div>
+        <div class="pilar"><h4>💧 Defensa del territorio</h4><p>Defendemos el territorio y nuestros recursos naturales.</p></div>
+        <div class="pilar"><h4>👩‍🌾 Equidad y diversidad</h4><p>Reconocemos el papel de mujeres, jóvenes y comunidades étnicas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="container">
+    <h3>¿Tu organización aún no está registrada?</h3>
+    <p>Súmate al proceso. Más de 150 asociaciones del Atlántico ya hacen parte del Movimiento Campesino.</p>
+    <a href="#registro" class="btn-p">Registrar mi asociación ahora</a>
+  </div>
+</div>
+
+<section class="acciones-section">
+  <div class="container">
+    <span class="section-tag">Movimiento en acción</span>
+    <h2 class="section-title">Lo que estamos haciendo</h2>
+    <div class="acciones-grid">
+      <div class="pilar"><h4>📍 Reuniones institucionales</h4><p>Seguimiento permanente a compromisos con entidades del gobierno nacional y departamental.</p></div>
+      <div class="pilar"><h4>✊ Movilización campesina</h4><p>Organización territorial y acciones colectivas en los 23 municipios del Atlántico.</p></div>
+      <div class="pilar"><h4>📊 Seguimiento al pliego</h4><p>Monitoreo activo de avances y cumplimiento de acuerdos con las entidades convocadas.</p></div>
+      <div class="pilar"><h4>📅 Próximos encuentros</h4><p>Espacios de articulación y formación en los municipios. Consulta con tu CMRA local.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pedagogica-section" id="pedagogica">
+  <div class="container">
+    <span class="section-tag">Aprende con nosotros</span>
+    <h2 class="section-title">Entendamos juntos</h2>
+    <div class="ped-grid">
+      <div class="pilar"><h4>🌱 ¿Qué es la Reforma Agraria?</h4><p>Es el proceso para garantizar acceso a tierra, producción y dignidad en el campo colombiano.</p></div>
+      <div class="pilar"><h4>📍 ¿Qué son los CMRA?</h4><p>Los Comités Municipales de Reforma Agraria son los espacios donde se organiza y exige la Reforma Agraria en cada municipio del Atlántico.</p></div>
+      <div class="pilar"><h4>⚠️ ¿Por qué el Atlántico está excluido?</h4><p>Históricamente no ha sido priorizado en la entrega de tierras ni en inversión rural. Eso es exactamente lo que estamos cambiando.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pliego-section" id="pliego">
+  <div class="container">
+    <span class="section-tag">Barranquilla, 8 de octubre de 2025</span>
+    <h2 class="section-title light">Pliego de Peticiones Oficial</h2>
+    <p class="pliego-human">
+      Este es el pliego de lo que estamos exigiendo como campesinos del Atlántico.<br><br>
+      Aquí está claro:<br>
+      <span>✔ Qué necesitamos</span><br>
+      <span>✔ Quién debe responder</span><br>
+      <span>✔ Qué soluciones esperamos</span>
+    </p>
+    <div class="pliego-intro-box">
+      <p>Este Pliego <strong>no es una súplica</strong>, sino la exigencia legítima de derechos constitucionales. El Atlántico ha sido excluido sistemáticamente sin sustento legal. Mientras otros departamentos avanzan con hectáreas adjudicadas, el Atlántico sigue relegado. <strong>Esa brecha debe cerrarse ahora.</strong></p>
+    </div>
+    <div class="pliego-tabs">
+      <button class="tab-btn active" onclick="showTab(0)">🌍 Tierras</button>
+      <button class="tab-btn" onclick="showTab(1)">🌾 Producción</button>
+      <button class="tab-btn" onclick="showTab(2)">🐟 Pesca</button>
+      <button class="tab-btn" onclick="showTab(3)">🌿 Ambiente</button>
+      <button class="tab-btn" onclick="showTab(4)">🏠 Vivienda</button>
+      <button class="tab-btn" onclick="showTab(5)">🛣️ Infraestructura</button>
+      <button class="tab-btn" onclick="showTab(6)">⚖️ Gobernanza</button>
+      <button class="tab-btn" onclick="showTab(7)">✅ Verificación</button>
+    </div>
+    <div id="tab-0" class="pliego-content active">
+      <div class="p-header"><div class="p-icon">🌍</div><div><span class="p-num">01</span><h3>Tierras y Formalización</h3><div class="p-resumen">Acceso real a tierra para el campesino</div><div class="p-ents">ANT · SAE · URT · IGAC · SNR</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Acceso a tierras</h4><p>La ANT y la SAE presentan un plan de adjudicación priorizando baldíos y bienes transferibles al campesinado atlanticense.</p></div>
+        <div class="pi"><h4>Zonas de Reserva Campesina</h4><p>Avanzar en la ZRC del Atlántico iniciando con Ponedera, como instrumento de ordenamiento social y fomento agroecológico.</p></div>
+        <div class="pi"><h4>Restitución y titulación</h4><p>La URT garantiza restitución ágil a víctimas. ANT, IGAC y SNR articulan campaña masiva de formalización en los 23 municipios.</p></div>
+      </div>
+    </div>
+    <div id="tab-1" class="pliego-content">
+      <div class="p-header"><div class="p-icon">🌾</div><div><span class="p-num">02</span><h3>Producción y Financiamiento</h3><div class="p-resumen">Crédito justo y asistencia técnica real</div><div class="p-ents">ADR · FINAGRO · Banco Agrario · ICA · SENA</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Asistencia técnica permanente</h4><p>La ADR presenta plan de asistencia técnica con cobertura garantizada en los 23 municipios.</p></div>
+        <div class="pi"><h4>Crédito rural justo</h4><p>Banco Agrario y FINAGRO establecen líneas especiales con posibilidad de condonación de deudas, especialmente en Suan y Santa Lucía.</p></div>
+        <div class="pi"><h4>Fortalecimiento productivo</h4><p>ICA: sanidad agropecuaria. INVIMA: registro sanitario campesino. SENA: formación técnica y certificación laboral.</p></div>
+      </div>
+    </div>
+    <div id="tab-2" class="pliego-content">
+      <div class="p-header"><div class="p-icon">🐟</div><div><span class="p-num">03</span><h3>Pesca y Acuicultura</h3><div class="p-resumen">Mejores condiciones para el trabajo en el agua</div><div class="p-ents">AUNAP · ADR · DIMAR · INVIMA · SENA</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Pesca semiindustrial sostenible</h4><p>Dotación de embarcaciones de calidad, motores eficientes y kits de pesca ecológicamente responsables.</p></div>
+        <div class="pi"><h4>Infraestructura de frío y acopio</h4><p>Centros de acopio y plantas de frío impulsadas por energía solar para reducir pérdidas y mejorar ingresos.</p></div>
+        <div class="pi"><h4>Modelo piloto nacional</h4><p>El Atlántico como modelo de economía azul campesina: soberanía alimentaria, empleo digno y sostenibilidad pesquera.</p></div>
+      </div>
+    </div>
+    <div id="tab-3" class="pliego-content">
+      <div class="p-header"><div class="p-icon">🌿</div><div><span class="p-num">04</span><h3>Ambiente y Territorio</h3><div class="p-resumen">Defendemos el territorio y nuestros recursos</div><div class="p-ents">Min. Ambiente · CRA · Gobernación · UPRA</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Protección de cuencas</h4><p>Min. Ambiente y CRA responden por daños al embalse del Guájaro, la cuenca Mallorquín y los bosques secos tropicales.</p></div>
+        <div class="pi"><h4>Plan de reforestación</h4><p>Restauración del bosque seco tropical. La cobertura boscosa no supera el 11% del territorio atlanticense.</p></div>
+        <div class="pi"><h4>Distritos de riego</h4><p>La ADR rinde informe completo sobre adecuación de tierras con garantías reales de operación futura.</p></div>
+      </div>
+    </div>
+    <div id="tab-4" class="pliego-content">
+      <div class="p-header"><div class="p-icon">🏠</div><div><span class="p-num">05</span><h3>Vivienda, Agua y Bienestar</h3><div class="p-resumen">Vida digna para las familias del campo</div><div class="p-ents">Min. Vivienda · DPS · Min. Salud · Min. Trabajo</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Vivienda rural digna</h4><p>Programas de construcción de viviendas rurales con compromisos presupuestales definidos y verificables.</p></div>
+        <div class="pi"><h4>Agua y saneamiento</h4><p>Acceso estructural al agua potable en zonas rurales, corrigiendo exclusión generada por acueductos en predios privados.</p></div>
+        <div class="pi"><h4>Hambre Cero</h4><p>DPS garantiza inclusión de familias campesinas en programas Hambre Cero y transferencias monetarias directas.</p></div>
+      </div>
+    </div>
+    <div id="tab-5" class="pliego-content">
+      <div class="p-header"><div class="p-icon">🛣️</div><div><span class="p-num">06</span><h3>Infraestructura y Energía</h3><div class="p-resumen">Vías y energía para el campo atlanticense</div><div class="p-ents">Min. Transporte · Min. Minas · Findeter</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Vías terciarias rurales</h4><p>Plan de mejoramiento de vías con financiamiento directo y ejecución verificable en el territorio.</p></div>
+        <div class="pi"><h4>Energías renovables con equidad</h4><p>Los parques solares en Ponedera, Sabanalarga y Puerto Colombia deben beneficiar directamente a las comunidades locales.</p></div>
+      </div>
+    </div>
+    <div id="tab-6" class="pliego-content">
+      <div class="p-header"><div class="p-icon">⚖️</div><div><span class="p-num">07</span><h3>Gobernanza y Derechos</h3><div class="p-resumen">Garantías reales para los líderes campesinos</div><div class="p-ents">Min. Interior · DNP · APC-Colombia</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Garantías para líderes</h4><p>Plan Especial de Garantías para líderes campesinos con medidas diferenciales para mujeres y jóvenes en riesgo.</p></div>
+        <div class="pi"><h4>Reconocimiento étnico</h4><p>Titulación prioritaria para comunidades afrodescendientes y pueblos indígenas Mocaná en Tubará y Malambo.</p></div>
+        <div class="pi"><h4>Cooperación internacional</h4><p>APC-Colombia gestiona apoyo de la ONU y la FAO. Representación del Atlántico en Reforma Agraria 2026 en Cartagena.</p></div>
+      </div>
+    </div>
+    <div id="tab-7" class="pliego-content">
+      <div class="p-header"><div class="p-icon">✅</div><div><span class="p-num">08</span><h3>Verificación y Cumplimiento</h3><div class="p-resumen">Transparencia absoluta en los acuerdos</div><div class="p-ents">MCA · ONU Colombia · Contraloría · Defensoría</div></div></div>
+      <div class="p-items">
+        <div class="pi"><h4>Comisión Tripartita</h4><p>Integrada por el MCA, el Ministerio de Agricultura con la ONU, y los organismos de control nacionales.</p></div>
+        <div class="pi"><h4>Informes trimestrales públicos</h4><p>La Comisión publica avances en medios y redes sociales. Transparencia absoluta y rendición de cuentas.</p></div>
+        <div class="pi"><h4>Garantías de acción</h4><p>El incumplimiento puede ser denunciado ante la Corte Constitucional. El MCA se reserva el derecho a la movilización pacífica.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="container">
+    <h3>El Atlántico no puede seguir esperando.</h3>
+    <p>Únete al proceso. Registra tu asociación y haz parte de la exigencia colectiva por la Reforma Agraria.</p>
+    <a href="#registro" class="btn-p">Quiero registrarme</a>
+  </div>
+</div>
+
+<section class="form-section" id="registro">
+  <div class="container">
+    <span class="section-tag">Únete al movimiento</span>
+    <h2 class="section-title">Registra tu Asociación</h2>
+    <p style="color:#5a4a2a;max-width:580px;line-height:1.7;font-size:.95rem">
+      Si tu organización hace parte del campo en el Atlántico, este es tu espacio.<br><br>
+      Regístrate y súmate a este proceso colectivo.
+    </p>
+    <div class="form-wrap">
+      <form id="registroForm">
+        <div class="form-grid">
+          <div class="fg full"><label>Nombre oficial de la asociación *</label><input type="text" name="nombre" placeholder="Ej: Asociación de Campesinos Unidos de Galapa" required></div>
+          <div class="fg"><label>Siglas</label><input type="text" name="siglas" placeholder="ACUG"></div>
+          <div class="fg"><label>NIT / Identificación</label><input type="text" name="nit" placeholder="900.123.456-7"></div>
+          <div class="fg"><label>Municipio *</label>
+            <select name="municipio" required>
+              <option value="">Selecciona municipio</option>
+              <option>Barranquilla</option><option>Soledad</option><option>Malambo</option>
+              <option>Sabanalarga</option><option>Baranoa</option><option>Polonuevo</option>
+              <option>Campo de la Cruz</option><option>Candelaria</option><option>Galapa</option>
+              <option>Juan de Acosta</option><option>Luruaco</option><option>Manatí</option>
+              <option>Palmar de Varela</option><option>Piojó</option><option>Ponedera</option>
+              <option>Puerto Colombia</option><option>Repelón</option><option>Sabanagrande</option>
+              <option>Santa Lucía</option><option>Santo Tomás</option><option>Suan</option>
+              <option>Tubará</option><option>Usiacurí</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="fg"><label>Nivel de alcance *</label>
+            <select name="nivel" required>
+              <option value="">Selecciona</option>
+              <option>Municipal</option><option>Regional</option>
+              <option>Departamental</option><option>Nacional</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tipo de organización</label>
+            <select name="tipo">
+              <option value="">Selecciona</option>
+              <option>Asociación campesina</option><option>Cooperativa</option>
+              <option>Resguardo indígena</option><option>Comunidad afrodescendiente</option>
+              <option>Organización de pescadores</option><option>Organización de mujeres rurales</option>
+              <option>Comité de reforma agraria (CMRA)</option>
+              <option>Federación</option><option>Otra</option>
+            </select>
+          </div>
+          <div class="fg"><label>Representante legal *</label><input type="text" name="representante" placeholder="Nombre completo" required></div>
+          <div class="fg"><label>Cédula del representante *</label><input type="text" name="cedula" placeholder="1.234.567.890" required></div>
+          <div class="fg"><label>Teléfono *</label><input type="tel" name="telefono" placeholder="300 000 0000" required></div>
+          <div class="fg"><label>Correo electrónico *</label><input type="email" name="email" placeholder="asociacion@correo.com" required></div>
+          <div class="fg"><label>N° aproximado de afiliados</label><input type="number" name="afiliados" placeholder="Ej: 85" min="1"></div>
+          <div class="fg full"><label>¿Por qué se adhieren al Pliego?</label><textarea name="motivacion" placeholder="Cuéntenos brevemente por qué su organización apoya el Pliego de Peticiones..."></textarea></div>
+          <div class="fg full" style="flex-direction:row;align-items:flex-start;gap:.6rem">
+            <input type="checkbox" id="acepto" name="acepta_tratamiento_datos" required style="width:18px;height:18px;flex-shrink:0;margin-top:2px">
+            <label for="acepto" style="font-size:.8rem;color:#5a4a2a;text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer;line-height:1.5">Declaro que la información es verídica y autorizo al Movimiento Campesino del Atlántico a usar mis datos con fines organizativos.</label>
+          </div>
+        </div>
+        <div class="form-submit">
+          <button type="submit" id="btnEnviar">Registrar mi asociación</button>
+          <p class="form-note">* Campos obligatorios · movimientocampesinoatlantico@gmail.com · 350 462 8682</p>
+        </div>
+      </form>
+      <div class="form-msg ok" id="msgOk">
+        <h3>🌿 ¡Bienvenidos al Movimiento!</h3>
+        <p>El registro fue recibido y guardado exitosamente en nuestra base de datos.<br><strong>¡La Reforma Agraria en el Atlántico Ya!</strong></p>
+      </div>
+      <div class="form-msg err" id="msgErr">
+        <p>⚠️ Hubo un problema al enviar. Por favor intenta de nuevo o escríbenos directamente al correo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contacto-strip">
+  <strong>Movimiento Campesino del Atlántico</strong> ·
+  <a href="mailto:movimientocampesinoatlantico@gmail.com">movimientocampesinoatlantico@gmail.com</a> ·
+  350 462 8682 · 310 308 4833
+</div>
+
+<footer>
+  <div class="footer-logo">Movimiento Campesino del Atlántico</div>
+  <p class="footer-sub">Por la Equidad Territorial, la Reforma Agraria Integral y la Dignidad del Campo</p>
+  <p class="footer-colectivo">Un proceso colectivo del campesinado del Atlántico</p>
+  <a href="#registro" class="btn-p" style="font-size:.78rem;padding:.6rem 1.4rem;margin-bottom:1.2rem;display:inline-block">Únete al proceso</a>
+  <div class="footer-copy">© 2026 Movimiento Campesino del Atlántico · Barranquilla, Colombia</div>
+</footer>
+
+<a href="https://wa.me/573504628682" target="_blank" class="wa-btn">
+  💬 Habla con el Movimiento
+</a>
+
+<script>
+function showTab(n){
+  document.querySelectorAll('.pliego-content').forEach((c,i)=>c.classList.toggle('active',i===n));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+}
+const orgs=["CMRA Barranquilla","ASITRAP FANAL CGT","ASOCAMPECHE","ASOCARCOL","Asoc. Peq. Agricultores","ASCAMCAR","ASOPESABAR","ASOACUAPOL","ASCATUB","Somos Vida Somos Tierra","TIERRA VIVA","ACUG Galapa","RTC","SOMOS TIERRA Coordinadora","ASVIDA Montes de María","ACOVID","ASOMICAPI","ASOTRACAMPO","El Campo es la Paz","CMRA Luruaco","ASOCAMPES","VERDE RENACER","SINTRAPP","ASOCAMCARIBE","AGROCARIBESC","ASOMURUMA","Cabildo Chimila","CMRA Polonuevo","ASOMAUSI Usiacurí","CMRA Usiacurí","ASOEMUS Usiacurí","AFRUCAM","ASOCAMPVA","Cabildo Chimila Baranoa","CMRA Piojó","ANUC","ACAMI","AGROFUTURA Polonuevo","ASOCIRAUS","PETROALPEM","AGROSABANALARGA","ASOAGROSERM","CORPADISA","ACUCAMBUL","ASOPROCAREAL","APCP Ciénaga","ASOCAMUBAR","Coomusocial Caribe","ASEPAZ","ASOCAANSA","CMRA Manatí","ASOCAVNU","FANAL","FEDEBALUARTE","Asocamtovi","Fund. Agropesquera Prosperar","Asoc. Pescadores SJ Tocagua","ANMUCIC","Asoc. Mujeres Frutos del Campo","Corp. Multiactiva Luruaco","ARCOC","Asocamz"];
+function ini(n){return n.split(/[\s\/\-]+/).filter(w=>/^[A-ZÁÉÍÓÚÑa-z]/.test(w)).map(w=>w[0].toUpperCase()).slice(0,3).join('')||n.slice(0,3).toUpperCase()}
+const track=document.getElementById('bannerTrack');
+track.innerHTML=[...orgs,...orgs].map(n=>`<div class="org-card"><div class="org-ini">${ini(n)}</div><div class="org-name">${n}</div></div>`).join('');
+document.getElementById('registroForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  if(!this.acepta_tratamiento_datos.checked){
+    document.getElementById('msgErr').style.display='block';
+    return;
+  }
+  const btn=document.getElementById('btnEnviar');
+  btn.disabled=true;btn.textContent='Enviando...';
+  const datos={nombre:this.nombre.value.trim(),siglas:this.siglas.value.trim(),nit:this.nit.value.trim(),municipio:this.municipio.value,nivel:this.nivel.value,tipo:this.tipo.value,representante:this.representante.value.trim(),cedula:this.cedula.value.trim(),telefono:this.telefono.value.trim(),email:this.email.value.trim(),afiliados:this.afiliados.value,motivacion:this.motivacion.value.trim(),acepta_tratamiento_datos:this.acepta_tratamiento_datos.checked};
+  try{
+    const resp=await fetch('/api/registro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(datos)});
+    const result=await resp.json();
+    if(result.ok){this.style.display='none';document.getElementById('msgOk').style.display='block';}
+    else{document.getElementById('msgErr').style.display='block';btn.disabled=false;btn.textContent='Registrar mi asociación';}
+  }catch(err){document.getElementById('msgErr').style.display='block';btn.disabled=false;btn.textContent='Registrar mi asociación';}
+});
+</script>
+</body>
+</html>
