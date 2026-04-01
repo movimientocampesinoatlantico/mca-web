@@ -77,6 +77,12 @@ section{padding:4.5rem 2rem}
 .pliego-intro-box{background:rgba(200,137,26,.12);border:1px solid rgba(200,137,26,.3);border-radius:8px;padding:1.5rem 2rem;margin:1.5rem 0 2rem;max-width:800px}
 .pliego-intro-box p{font-size:.92rem;line-height:1.7;color:rgba(245,240,224,.85)}
 .pliego-intro-box strong{color:var(--oc)}
+.podcast-wrap{background:rgba(245,240,224,.08);border:1px solid rgba(200,137,26,.3);border-radius:12px;padding:2rem;margin:2rem 0 2.5rem;max-width:700px}
+.podcast-tag{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--oc);margin-bottom:.5rem;display:block}
+.podcast-titulo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cr);margin-bottom:.4rem;font-style:italic}
+.podcast-desc{font-size:.85rem;color:rgba(245,240,224,.6);margin-bottom:1.25rem;line-height:1.6}
+.podcast-player{width:100%;height:54px;border-radius:8px;outline:none;accent-color:#c8891a}
+.podcast-player::-webkit-media-controls-panel{background:#2a3a0f}
 .pliego-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
 .tab-btn{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem;background:rgba(245,240,224,.08);border:1px solid rgba(200,137,26,.2);border-radius:3px;color:rgba(245,240,224,.6);cursor:pointer;transition:all .2s}
 .tab-btn.active,.tab-btn:hover{background:var(--oc);color:var(--ma);border-color:var(--oc)}
@@ -288,6 +294,15 @@ footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text
   <div class="container">
     <span class="section-tag">Barranquilla, 8 de octubre de 2025</span>
     <h2 class="section-title light">Pliego de Peticiones Oficial</h2>
+    <div class="podcast-wrap">
+  <span class="podcast-tag">🎙️ Escucha el Pliego</span>
+  <div class="podcast-titulo">"Una conversación sobre lo que exige el campo atlanticense"</div>
+  <div class="podcast-desc">Audio generado con NotebookLM — explicación completa del Pliego de Peticiones del Movimiento Campesino del Atlántico. Ideal para escuchar desde el celular.</div>
+  <audio class="podcast-player" controls preload="metadata">
+    <source src="audio/El_Pliego_de_Peticiones_ATLANTICO.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+</div>
     <p class="pliego-human">
       Este es el pliego de lo que estamos exigiendo como campesinos del Atlántico.<br><br>
       Aquí está claro:<br>
@@ -467,7 +482,7 @@ footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text
   <div class="footer-copy">© 2026 Movimiento Campesino del Atlántico · Barranquilla, Colombia</div>
 </footer>
 
-<a href="https://wa.me/573504628682" target="_blank" class="wa-btn">
+<a href="https://wa.me/573150628576" target="_blank" class="wa-btn">
   💬 Habla con el Movimiento
 </a>
 
