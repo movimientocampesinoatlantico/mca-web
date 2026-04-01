@@ -6,10 +6,12 @@
 <title>Movimiento Campesino del Atlántico</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@300;400;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;max-width:100%}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
 :root{--vd:#3d4a1f;--vc:#5a7a2a;--oc:#c8891a;--ti:#b85c1a;--cr:#f5f0e0;--cd:#e8e0c8;--ma:#2a1f0a;--bl:#ffffff}
 html{scroll-behavior:smooth}
-body{font-family:'Source Serif 4',serif;background:var(--cr);color:var(--ma);overflow-x:hidden}
+body{font-family:'Source Serif 4',serif;background:var(--cr);color:var(--ma)}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(61,74,31,0.97);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:76px;border-bottom:2px solid var(--oc)}
 .nav-logo{display:flex;align-items:center;gap:12px}
 .nav-logo img{width:64px;height:64px;border-radius:50%;object-fit:contain;background:#f5f0e0;padding:4px;flex-shrink:0}
@@ -19,7 +21,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(61,74,31,0.9
 .nav-links a:hover{border-bottom-color:var(--oc);color:var(--oc)}
 .hero{min-height:100vh;padding-top:76px;background:var(--vd);display:flex;align-items:center;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(200,137,26,.04) 40px,rgba(200,137,26,.04) 41px)}
-.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;max-width:1200px;margin:0 auto;padding:4rem 2rem;width:100%}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;max-width:1200px;margin:0 auto;padding:4rem 2rem;width:100%;overflow-x:hidden}
 .hero-eyebrow{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.2em;color:var(--oc);text-transform:uppercase;margin-bottom:.8rem}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.8rem);font-weight:900;color:var(--cr);line-height:1.08;margin-bottom:.6rem}
 .hero-lema{font-family:'Oswald',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);font-weight:700;color:var(--oc);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.5rem;border-left:4px solid var(--oc);padding-left:1rem;line-height:1.3}
@@ -53,16 +55,6 @@ section{padding:4.5rem 2rem}
 .dato-card{background:var(--bl);border-radius:8px;padding:1.5rem;text-align:center;border-bottom:3px solid var(--oc)}
 .dato-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--vd);display:block;line-height:1}
 .dato-label{font-size:.78rem;color:#6a5a3a;margin-top:.4rem;line-height:1.4}
-.banner-section{background:var(--vd);padding:3.5rem 0;overflow:hidden}
-.banner-header{text-align:center;padding:0 2rem 2.5rem}
-.banner-track-wrap{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
-.banner-track{display:flex;gap:20px;animation:scroll-b 45s linear infinite;width:max-content}
-.banner-track:hover{animation-play-state:paused}
-@keyframes scroll-b{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.org-card{width:130px;height:130px;flex-shrink:0;background:rgba(245,240,224,.07);border:1px solid rgba(200,137,26,.22);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;gap:6px;transition:background .3s,border-color .3s}
-.org-card:hover{background:rgba(245,240,224,.15);border-color:var(--oc)}
-.org-ini{width:66px;height:66px;border-radius:50%;background:rgba(245,240,224,.1);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:600;color:var(--cr);text-align:center;padding:5px;line-height:1.2;border:1.5px solid rgba(200,137,26,.28)}
-.org-name{font-family:'Oswald',sans-serif;font-size:.55rem;color:rgba(245,240,224,.65);text-align:center;line-height:1.3;text-transform:uppercase}
 .identidad-section{background:var(--cr)}
 .id-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;margin-top:2.5rem}
 .id-text p{font-size:1.05rem;line-height:1.85;color:#3a3020;margin-bottom:1rem}
@@ -132,7 +124,7 @@ footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text
 @media(max-width:480px){.datos-grid,.ped-grid{grid-template-columns:1fr}}
 .orgs-section{background:var(--vd);padding:3.5rem 0;overflow:hidden}
 .orgs-header{text-align:center;padding:0 2rem 2.5rem}
-.banner-track-wrap{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
+.banner-track-wrap{overflow:hidden;max-width:100vw;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
 .banner-track{display:flex;gap:20px;animation:scroll-b 60s linear infinite;width:max-content}
 .banner-track:hover{animation-play-state:paused}
 @keyframes scroll-b{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
