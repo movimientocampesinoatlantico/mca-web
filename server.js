@@ -2,16 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 const path = require('path');
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-
-console.log('SUPABASE_URL:', process.env.SUPABASE_URL);
-console.log('SUPABASE_KEY existe:', !!process.env.SUPABASE_KEY);
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let supabase = null;
+if (SUPABASE_URL && SUPABASE_KEY) {
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+} else {
+  console.warn('⚠️  SUPABASE_URL o SUPABASE_KEY no definidas. Las rutas de base de datos no funcionarán.');
+}
 
 const app = express();
 app.use(cors());
@@ -19,6 +19,10 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/registro', async (req, res) => {
+  if (!supabase) {
+    return res.status(503).json({ ok: false, mensaje: 'Base de datos no configurada' });
+  }
+
   const { nombre, siglas, nit, municipio, nivel, tipo,
           representante, cedula, telefono, email, afiliados, motivacion,
           acepta_tratamiento_datos } = req.body;
@@ -50,6 +54,10 @@ app.post('/api/registro', async (req, res) => {
 });
 
 app.get('/api/registros', async (req, res) => {
+  if (!supabase) {
+    return res.status(503).json({ ok: false, mensaje: 'Base de datos no configurada' });
+  }
+
   if (req.query.clave !== 'mca2025admin') {
     return res.status(401).json({ ok: false, mensaje: 'No autorizado' });
   }
