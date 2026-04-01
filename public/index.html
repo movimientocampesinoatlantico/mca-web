@@ -55,6 +55,9 @@ section{padding:4.5rem 2rem}
 .dato-card{background:var(--bl);border-radius:8px;padding:1.5rem;text-align:center;border-bottom:3px solid var(--oc)}
 .dato-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--vd);display:block;line-height:1}
 .dato-label{font-size:.78rem;color:#6a5a3a;margin-top:.4rem;line-height:1.4}
+.dato-icono{font-size:2.2rem;margin-bottom:.5rem;display:block;text-align:center}
+.dato-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.dato-num{font-size:1.8rem}
 .identidad-section{background:var(--cr)}
 .id-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;margin-top:2.5rem}
 .id-text p{font-size:1.05rem;line-height:1.85;color:#3a3020;margin-bottom:1rem}
@@ -180,13 +183,37 @@ footer{background:var(--vd);color:rgba(245,240,224,.45);padding:2.5rem 2rem;text
 <section class="datos-section">
   <div class="container">
     <span class="section-tag">Esto no es discurso. Es lo que vivimos en el Atlántico:</span>
-    <h2 class="section-title">La realidad del campo en el Atlántico</h2>
+    <h2 class="section-title">Esto es lo que está pasando en el campo del Atlántico</h2>
     <div class="datos-grid">
-      <div class="dato-card"><span class="dato-num">80%</span><div class="dato-label">Dependencia alimentaria del exterior</div></div>
-      <div class="dato-card"><span class="dato-num">0.86</span><div class="dato-label">Índice Gini de concentración de tierras</div></div>
-      <div class="dato-card"><span class="dato-num">85%</span><div class="dato-label">Del pescado consumido es importado</div></div>
-      <div class="dato-card"><span class="dato-num">339K ha</span><div class="dato-label">Territorio — 72% bosque seco tropical</div></div>
+
+      <div class="dato-card">
+        <div class="dato-icono">🥔</div>
+        <span class="dato-num">80%</span>
+        <div class="dato-label">Nuestra comida viene de afuera,<br>aunque aquí podríamos producirla.</div>
+      </div>
+
+      <div class="dato-card">
+        <div class="dato-icono">🌱</div>
+        <span class="dato-num">⚠️</span>
+        <div class="dato-label">La tierra está concentrada en pocas manos<br>y muchas no se están usando para producir.</div>
+      </div>
+
+      <div class="dato-card">
+        <div class="dato-icono">🐟</div>
+        <span class="dato-num">85%</span>
+        <div class="dato-label">Estamos rodeados de agua — río, mar, embalses —<br>pero importamos el pescado que podríamos producir.</div>
+      </div>
+
+      <div class="dato-card">
+        <div class="dato-icono">🌵</div>
+        <span class="dato-num">11%</span>
+        <div class="dato-label">El bosque está desapareciendo.<br>Nos quedamos sin protección frente al clima.</div>
+      </div>
+
     </div>
+    <p style="margin-top:2rem;font-size:1.05rem;color:var(--vd);font-weight:600;text-align:center;">
+      Y aún así, el campesino sigue siendo excluido.
+    </p>
   </div>
 </section>
 
